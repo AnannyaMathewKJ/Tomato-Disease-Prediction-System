@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% block title %}{{ heading }}{% endblock %} 
+{% block content %} 
+    <div class="container"> 
+        <h1>{{ heading }}</h1> 
+        <p>{{ content }}</p> 
+        <a href="{% url 'show_result' %}" class="upload-button"> 
+            Back to Prediction 
+        </a> 
+    </div> 
+{% endblock %}

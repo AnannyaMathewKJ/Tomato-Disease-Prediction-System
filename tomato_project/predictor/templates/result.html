@@ -1,0 +1,58 @@
+{% load static %} 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Prediction Result</title> 
+    <link rel="stylesheet" href="{% static 'predictor/style.css' %}"> 
+    <style> 
+        .button-group { margin-top: 30px; } 
+        .button-group a {  
+            display: inline-block; 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: bold;        } 
+        .cause-btn { background-color: #e74c3c; color: white; } 
+        .solution-btn { background-color: #2ecc71; color: white; } 
+    </style> 
+</head>
+<body> 
+    <div class="container"> 
+        <h1>✓ Prediction Complete</h1>         
+        <div class="result-section"> 
+            <h2>Uploaded Image:</h2> 
+            <img src="{{ image_url }}" alt="Uploaded Tomato Leaf" class="uploaded-img"> 
+            <h2>Prediction:</h2> 
+            <p class="prediction-text"> 
+                <div class="prediction-detail"> 
+                    <div class="label">Disease:</div> 
+                    <div class="value">{{ disease }}</div> 
+                </div> 
+                <div class="prediction-detail"> 
+                    <div class="label">Confidence:</div> 
+                    <div class="value">{{ confidence }}</div> 
+                </div> 
+            </p> 
+        </div> 
+        <div class="button-group"> 
+            {% if disease_info_available %} 
+                <a href="{% url 'show_cause' disease_name=disease_slug %}" class="cause-btn"> 
+                    View Cause 
+                </a> 
+                <a href="{% url 'show_solution' disease_name=disease_slug %}" class="solution-btn"> 
+                    View Preferred Solution 
+                </a> 
+
+            {% else %} 
+                <p>Detailed information for this prediction is not yet available.</p> 
+            {% endif %} 
+            
+            <a href="{% url 'home' %}" class="upload-button" style="margin-top: 20px; display: block;"> 
+                New Prediction 
+            </a> 
+        </div> 
+    </div> 
+</body> 
+</html>

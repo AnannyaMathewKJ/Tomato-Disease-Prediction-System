@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block title %}Home - Disease Prediction{% endblock %} 
+{% block content %} 
+    <h1>Tomato Disease Prediction System</h1> 
+    <p>Upload an image of a tomato leaf to detect if it is diseased</p> 
+    <form action="{% url 'predict_disease' %}" method="post" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        <div class="file-upload-container"> 
+            <label for="file-upload" class="custom-file-upload"> 
+                Choose File 
+            </label> 
+            <input id="file-upload" type="file" name="tomato_leaf" /> 
+            <span id="file-name">No file chosen</span> 
+        </div> 
+        <button type="submit" class="predict-button">Predict</button> 
+    </form> 
+    <script> 
+        document.getElementById('file-upload').onchange = function () { 
+            document.getElementById('file-name').textContent = this.files[0] ? this.files[0].name : 'No file chosen';        }; 
+    </script> 
+{% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tomato Predictor{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'predictor/style.css' %}">
+
+    {%block extra_head%}{%endblock%}
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Tomato Predictor</a>
+            <div>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="content-wrapper">
+            {% block header %}
+            {% endblock %}
+        </div>
+        <div class="content-wrapper">
+            {% block content %}
+            {% endblock %}
+    </main>
+
+    <footer>
+        Tomato Disease Prediction System
+    </footer>
+</body>
+</html>
